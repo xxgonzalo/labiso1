@@ -1,2 +1,3 @@
-# LegacyProject
-ISO1 Práctica 1
+# Projectos de Ingeniería del Software I (Grado en Ingeniería Informática ~ Talavera de la Reina)
+
+
