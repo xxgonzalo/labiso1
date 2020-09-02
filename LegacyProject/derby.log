@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Wed Sep 02 08:26:06 CEST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0174-4d7e-70d4-000000a6d568 
-on database directory D:\OneDrive - Universidad de Castilla-La Mancha\Universidad\DOCENCIA\ISO1\Practicas\ws\LegacyProject\iso1_db with class loader sun.misc.Launcher$AppClassLoader@139a55 
-Loaded from file:/D:/OneDrive%20-%20Universidad%20de%20Castilla-La%20Mancha/Universidad/DOCENCIA/ISO1/Practicas/ws/LegacyProject/lib/derby-10.14.2.0.jar
+Wed Sep 02 08:42:47 CEST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0174-4d8d-b999-000000a978b0 
+on database directory D:\OneDrive - Universidad de Castilla-La Mancha\Universidad\DOCENCIA\ISO1\Practicas\git-repository\LegacyProject\iso1_db with class loader sun.misc.Launcher$AppClassLoader@139a55 
+Loaded from file:/D:/OneDrive%20-%20Universidad%20de%20Castilla-La%20Mancha/Universidad/DOCENCIA/ISO1/Practicas/git-repository/LegacyProject/lib/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_151-b12
-user.dir=D:\OneDrive - Universidad de Castilla-La Mancha\Universidad\DOCENCIA\ISO1\Practicas\ws\LegacyProject
+user.dir=D:\OneDrive - Universidad de Castilla-La Mancha\Universidad\DOCENCIA\ISO1\Practicas\git-repository\LegacyProject
 os.name=Windows 10
 os.arch=x86
 os.version=10.0
