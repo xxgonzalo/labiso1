@@ -1,4 +1,4 @@
-package legacy;
+package Presentacion;
 
 import java.awt.EventQueue;
 
@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.derby.jdbc.EmbeddedDriver;
+
+import Domain.Usuario;
 
 import javax.swing.JLabel;
 
@@ -25,6 +27,8 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
+import Persistencia.Agente;
+
 public class JFrameLogin extends JFrame {
 
 	private JPanel contentPane;
@@ -39,7 +43,7 @@ public class JFrameLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					crearBaseDatosSinoExiste();
+					
 					JFrameLogin frame = new JFrameLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -89,8 +93,11 @@ public class JFrameLogin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean existe = false;
 				try {
-					if (Usuario.read(textFieldLog.getText(), textFieldPass.getText()) != null)
+					Usuario usuario=new Usuario();
+					usuario.read(textFieldLog.getText(), textFieldPass.getText());
+					if (usuario != null) {
 						existe = true;
+					}
 					if (existe) {
 						textPaneEstado.setText("El login ha  sido correcto");
 					} else {
@@ -157,48 +164,4 @@ public class JFrameLogin extends JFrame {
 		 */
 	}
 
-	public static void crearBaseDatosSinoExiste() {
-		Connection conn = null;
-		PreparedStatement pstmt;
-		Statement stmt;
-		ResultSet rs = null;
-		String createSQL = "create table usuario (login varchar(30) not null, pass varchar(30) not null, constraint primary_key primary key (login))";
-
-		try {
-			Driver derbyEmbeddedDriver = new EmbeddedDriver();
-			DriverManager.registerDriver(derbyEmbeddedDriver);
-			conn = DriverManager.getConnection(BDConstantes.CONNECTION_STRING, BDConstantes.DBUSER, BDConstantes.DBPASS);
-			conn.setAutoCommit(false);
-			stmt = conn.createStatement();
-			stmt.execute(createSQL);
-
-			pstmt = conn.prepareStatement("insert into usuario (login, pass) values(?,?)");
-			pstmt.setString(1, "alumno");
-			pstmt.setString(2, "alumno");
-			pstmt.executeUpdate();
-
-			rs = stmt.executeQuery("select * from usuario");
-			while (rs.next()) {
-				System.out.printf("%s - pass: %s\n", rs.getString(1), rs.getString(2));
-			}
-
-			//stmt.execute("drop table usuario");
-
-			conn.commit();
-
-		} catch (SQLException ex) {
-			System.out.println("in connection" + ex);
-		}
-
-		try {
-			DriverManager.getConnection("jdbc:derby:;shutdown=true");
-		} catch (SQLException ex) {
-			if (((ex.getErrorCode() == 50000) && ("XJ015".equals(ex.getSQLState())))) {
-				System.out.println("Derby shut down normally");
-			} else {
-				System.err.println("Derby did not shut down normally");
-				System.err.println(ex.getMessage());
-			}
-		}
-	}
 }

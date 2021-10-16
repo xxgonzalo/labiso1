@@ -1,19 +1,13 @@
 ----------------------------------------------------------------
-Fri Oct 02 07:36:47 CEST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0174-e7d0-137c-00000e7024b8 
-on database directory /Users/ignaciogarciarodriguez/git/ISO_1/LegacyProject/iso1_db with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
-Loaded from file:/Users/ignaciogarciarodriguez/git/ISO_1/LegacyProject/lib/derby-10.14.2.0.jar
+Sat Oct 16 20:58:53 CEST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-8a78-9e2e-00000ef8d2a8 
+on database directory C:\Users\gonza\Desktop\Universidad\Segundo\Ingeniería de Software\Laboratorio\LegacyProyect\Legacyproject\LegacyProject\iso1_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6d5380c2 
+Loaded from file:/C:/Users/gonza/Desktop/Universidad/Segundo/Ingenier%c3%ada%20de%20Software/Laboratorio/LegacyProyect/Legacyproject/LegacyProject/lib/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_261-b12
-user.dir=/Users/ignaciogarciarodriguez/git/ISO_1/LegacyProject
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.15.7
+java.runtime.version=16.0.2+7-67
+user.dir=C:\Users\gonza\Desktop\Universidad\Segundo\Ingeniería de Software\Laboratorio\LegacyProyect\Legacyproject\LegacyProject
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Oct 02 07:36:47 CEST 2020: Shutting down Derby engine
-----------------------------------------------------------------
-Fri Oct 02 07:36:47 CEST 2020:
-Shutting down instance a816c00e-0174-e7d0-137c-00000e7024b8 on database directory /Users/ignaciogarciarodriguez/git/ISO_1/LegacyProject/iso1_db with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
-----------------------------------------------------------------

@@ -1,4 +1,4 @@
-package legacy;
+package Presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Domain.Usuario;
 
 import java.awt.FlowLayout;
 
@@ -20,7 +22,7 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class JFrameEliminarUsuario extends JFrame {
+public class JFrameNuevoUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldLogin;
@@ -29,7 +31,7 @@ public class JFrameEliminarUsuario extends JFrame {
 
 	/**
 	 * Launch the application.
-	 
+	 */
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,13 +45,13 @@ public class JFrameEliminarUsuario extends JFrame {
 			}
 		});
 	}
-	*/
+	
 	
 	/**
 	 * Create the frame.
 	 */
-	public JFrameEliminarUsuario() {
-		setTitle("Eliminar usuario registrado - ya se implementar\u00E1...");
+	public JFrameNuevoUsuario() {
+		setTitle("Dar de alta a un nuevo usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 420, 285);
 		contentPane = new JPanel();
@@ -75,16 +77,28 @@ public class JFrameEliminarUsuario extends JFrame {
 		textFieldPassword.setBounds(87, 75, 134, 28);
 		contentPane.add(textFieldPassword);
 		
-		JButton btnAltaUsuario = new JButton("Eliminar usuario");
+		JButton btnAltaUsuario = new JButton("Alta usuario");
 		btnAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean eliminado = false;
-				
-				//esto habrá que implementarlo como sea cuando se solicite desde Gerencia
+				boolean insertado = false;
+				try {
+					Usuario u = new Usuario(textFieldLogin.getText(), textFieldPassword.getText());
+					if(u.insert(textFieldLogin.getText(), textFieldPassword.getText()) ==1)
+						insertado = true;
+					
+					if(insertado){
+						textPane.setText("Usuario creado correctamente");
+					} else {
+						textPane.setText("No se ha podido insertar el usuario");
+					}
+					
+				} catch (Exception e) {
+					textPane.setText("No se ha podido crear  el usuario.¿Tal vez ya existe?");
+				}
 				
 			}
 		});
-		btnAltaUsuario.setBounds(253, 76, 141, 29);
+		btnAltaUsuario.setBounds(253, 76, 117, 29);
 		contentPane.add(btnAltaUsuario);
 		
 		JLabel label_1 = new JLabel("Estado");

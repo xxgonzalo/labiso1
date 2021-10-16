@@ -1,4 +1,4 @@
-package legacy;
+package Domain;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -10,28 +10,27 @@ import java.util.Vector;
 
 import org.apache.derby.jdbc.EmbeddedDriver;
 
-public class Usuario {
+import Persistencia.BDConstantes;
+
+public class GestorUsuario {
 	
-	public String mLogin;
-	public String mPassword;
-	
-	
-	//Constructor para la creaci—n de un objeto Usuario vacio
-	public Usuario(){
-		this.mLogin = null;
-		this.mPassword = null;
+	public boolean autenticar(String login, String password) throws Exception{
+		boolean autenticado = false;
+		
+		if(read(login, password) != null)
+			autenticado = true;
+		return autenticado;
 	}
 	
-	//Constructor para la creaci—n de un Usuario
-	public Usuario(String login, String password){
-		this.mLogin = login;
-		this.mPassword = password;
+	public static boolean nuevoUsuario(String login, String password) throws Exception{
+		boolean insertado = false;
+		
+		Usuario u = new Usuario(login, password);
+		if(u.insert(login,password) ==1)
+			insertado = true;
+		return insertado;		
 	}
-	
-	//Selecci—n de un usuario de la base de datos a partir del login y el password
-	@SuppressWarnings("unchecked")
-	public static Usuario read(String login, String password) throws Exception{
-		String l,g;
+	public Usuario read(String login, String password) throws Exception{
 		Usuario u = null;
 		Vector<Object> aux = null;
 		Driver derbyEmbeddedDriver = new EmbeddedDriver();
@@ -54,26 +53,30 @@ public class Usuario {
 			aux = (Vector<Object>) vectoradevolver.elementAt(0);
 			u = new Usuario((String) aux.elementAt(0), (String) aux.elementAt(1));
 		}
+		
 		return u;
 	}
-	
-	//Inserci—n de un nuevo usuario en la base de datos
-	public int insert() throws Exception{
+	public int insert(String login, String password) throws Exception{
 		Driver derbyEmbeddedDriver = new EmbeddedDriver();
 		DriverManager.registerDriver(derbyEmbeddedDriver);
 		Connection mBD = DriverManager.getConnection(""+BDConstantes.DRIVER+":"+BDConstantes.DBNAME+";create=false", BDConstantes.DBUSER, BDConstantes.DBPASS);
-		PreparedStatement stmt = mBD.prepareStatement("INSERT INTO Usuario VALUES('"+this.mLogin+"','"+this.mPassword+"')");
+		PreparedStatement stmt = mBD.prepareStatement("INSERT INTO Usuario VALUES('"+login+"','"+password+"')");
     	int res=stmt.executeUpdate();
     	stmt.close();
     	mBD.close();
 		return res;
 	}
 	
-	public int update () throws Exception{
-		//por ahora no nos ha hecho falta actualizar nada...
-		return 0;
+	public int update(String login, String password) throws Exception{
+	Driver derbyEmbeddedDriver = new EmbeddedDriver();
+	DriverManager.registerDriver(derbyEmbeddedDriver);
+	Connection mBD = DriverManager.getConnection(""+BDConstantes.DRIVER+":"+BDConstantes.DBNAME+
+			";create=false", BDConstantes.DBUSER, BDConstantes.DBPASS);
+	PreparedStatement stmt = mBD.prepareStatement("DELETE FROM Usuario WHERE"
+			+ " LOGIN='"+login+"' AND PASS='"+password+"'");
+	int res=stmt.executeUpdate();
+	stmt.close();
+	mBD.close();
+	return res;
 	}
-	
-
-	private String DBPORT="3308";
 }
